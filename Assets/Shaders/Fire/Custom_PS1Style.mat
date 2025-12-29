@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Custom_PS1Style
-  m_Shader: {fileID: 4800000, guid: bd7bd8bbac8897d4aaec2ed2b2546c48, type: 3}
+  m_Shader: {fileID: 4800000, guid: e5e07168e13e7a140a659f0312b48640, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3999ec7721065034ab1ca0260a0e7a38, type: 3}
+        m_Texture: {fileID: 2800000, guid: 43cbc137674705f4aab1a8ace7e991f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:

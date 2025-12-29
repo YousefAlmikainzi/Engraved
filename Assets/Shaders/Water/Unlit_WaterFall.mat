@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Unlit_WaterFall
-  m_Shader: {fileID: 4800000, guid: 4a36cc1c75efb5847abda1221ef351fc, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8c843f824a6431d49a10e052c2b2b38a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -19,20 +19,20 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _TimeScale
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.791
-    - _NoiseScale: 15
-    - _Threshold: 0.1
-    - _TimeScale: 5
+    - _Alpha: 0.464
+    - _NoiseScale: 10
+    - _Threshold: 0
+    - _TimeScale: 10.1
     m_Colors:
-    - _Color1: {r: 0, g: 0.4078801, b: 0.46226418, a: 1}
-    - _Color2: {r: 0, g: 0.18190905, b: 0.31132078, a: 1}
-    - _Color3: {r: 0, g: 0.090122014, b: 0.2735849, a: 1}
-    - _Color4: {r: 0, g: 0.0085460525, b: 0.066037714, a: 1}
+    - _Color1: {r: 0, g: 0.5924529, b: 0.5855639, a: 1}
+    - _Color2: {r: 0, g: 0.5169811, b: 0.4348465, a: 1}
+    - _Color3: {r: 0, g: 0.15459909, b: 0.21509439, a: 1}
+    - _Color4: {r: 0, g: 0.08138672, b: 0.11698109, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
