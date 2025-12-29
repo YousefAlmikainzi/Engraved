@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] int attackDamage = 1;
     [SerializeField] float attackCoolDown = 1.0f;
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] Animator animator;
 
     float attackTimer = 0f;
 
@@ -15,11 +15,14 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= attackTimer)
         {
-            Vector3 attackPont = transform.position + transform.TransformDirection(attackRange);
-            Collider[] hits = Physics.OverlapSphere(attackPont, attackRadius, enemyLayer);
+            animator.SetTrigger("Punch");
+
+            Vector3 attackPoint = transform.position + transform.TransformDirection(attackRange);
+            Collider[] hits = Physics.OverlapSphere(attackPoint, attackRadius, enemyLayer);
+
             foreach (Collider c in hits)
             {
-                if(c.CompareTag("Enemy"))
+                if (c.CompareTag("Enemy"))
                 {
                     EnemyBehavior enemy = c.GetComponent<EnemyBehavior>();
                     enemy.TakeDamage(attackDamage, GetComponent<PlayerBehavior>());
@@ -29,6 +32,7 @@ public class PlayerAttack : MonoBehaviour
             attackTimer = Time.time + attackCoolDown;
         }
     }
+
     public void IncreaseDamage(int amount)
     {
         attackDamage += amount;
