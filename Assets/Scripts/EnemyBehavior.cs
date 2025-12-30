@@ -4,7 +4,8 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] int enemyHealth = 3;
     [SerializeField] int givenExp = 2;
-    
+    [SerializeField] int Score = 1;
+
     int currentHealth;
     bool isDead = false;
 
@@ -15,27 +16,26 @@ public class EnemyBehavior : MonoBehaviour
 
     public void TakeDamage(int damageAmount, PlayerBehavior player)
     {
-        if(isDead)
-        {
-            return;
-        }
+        if (isDead) return;
+
         currentHealth -= damageAmount;
+
         if (currentHealth <= 0)
         {
             Death(player);
         }
     }
+
     void Death(PlayerBehavior player)
     {
         isDead = true;
 
         player.GainExp(givenExp);
 
-        var col = GetComponent<Collider>();
-        col.enabled = false;
+        ScoreManager.Instance.AddScore(Score);
 
-        var rend = GetComponentInChildren<Renderer>();
-        rend.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        GetComponentInChildren<Renderer>().enabled = false;
 
         Destroy(gameObject);
     }
