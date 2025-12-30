@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -10,12 +11,12 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] Slider expSlider;
 
     [SerializeField] int damageIncreasePerLevel = 1;
-
     [SerializeField] int damageTakenFromEnemies = 1;
 
     private int currentHealth;
     private int currentExp;
     private int playerLevel = 1;
+
     void Start()
     {
         currentHealth = playerHealth;
@@ -26,15 +27,32 @@ public class PlayerBehavior : MonoBehaviour
         expSlider.maxValue = expNeededToLevelUp;
         expSlider.value = currentExp;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            currentHealth -= damageTakenFromEnemies;
-            currentHealth = Mathf.Max(0, currentHealth);
-            healthSlider.value = currentHealth;
+            TakeDamage(damageTakenFromEnemies);
         }
     }
+
+    void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Max(0, currentHealth);
+        healthSlider.value = currentHealth;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void GainExp(int expAmount)
     {
         currentExp += expAmount;
@@ -47,6 +65,7 @@ public class PlayerBehavior : MonoBehaviour
         expSlider.maxValue = expNeededToLevelUp;
         expSlider.value = currentExp;
     }
+
     void PlayerLevelUp()
     {
         playerLevel++;
@@ -58,6 +77,7 @@ public class PlayerBehavior : MonoBehaviour
         var attack = GetComponent<PlayerAttack>();
         attack.IncreaseDamage(damageIncreasePerLevel);
     }
+
     void UpdateHealthUI()
     {
         healthSlider.maxValue = playerHealth;
