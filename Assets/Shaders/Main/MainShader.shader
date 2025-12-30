@@ -8,6 +8,7 @@ Shader "Unlit/PS1_Base"
         _SnapRange2 ("Range 2", Float) = 60.0
         _TimeSpeed ("Time Speed", Float) = .5
         _BackLight ("Back Light", Float) = .5
+        _Color ("Color", Color) = (1,1,1,1)
     }
 
     SubShader
@@ -38,7 +39,7 @@ Shader "Unlit/PS1_Base"
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
+            float4 _MainTex_ST, _Color;
             float _Snap, _AmbientIntensity, _TimeSpeed, _SnapRange1, _SnapRange2, _BackLight;
 
             v2f vert (appdata v)
@@ -61,7 +62,7 @@ Shader "Unlit/PS1_Base"
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 uv = i.uv / i.w;
-                fixed4 col = tex2D(_MainTex, uv);
+                fixed4 col = tex2D(_MainTex, uv) * _Color;
                 float3 ambient = _AmbientIntensity * col.xyz;
                 float3 albedo = col.xyz * i.light + ambient;
                 return fixed4(albedo, 1);
