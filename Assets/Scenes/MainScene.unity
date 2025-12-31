@@ -10834,7 +10834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e28583aea419f448b2c7d7c05900cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horrorClip: {fileID: 8300000, guid: 45e5219a4098cb2499006b462cf066c9, type: 3}
+  horrorClip: {fileID: 8300000, guid: e646ca923238dea44a5908c91fb616b5, type: 3}
   intervalSeconds: 21
   volume: 2
 --- !u!1 &1777742651463942045
@@ -48743,7 +48743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 7317039bc80212e4e8d427ec2444ea21, type: 2}
   fadeDuration: 2
-  fadeSound: {fileID: 8300000, guid: 5529d6719e901f545802089cdba28ccb, type: 3}
+  fadeSound: {fileID: 8300000, guid: 48b19fe365358c045b166f0a492c37a8, type: 3}
 --- !u!135 &8100003191790420057
 SphereCollider:
   m_ObjectHideFlags: 0
