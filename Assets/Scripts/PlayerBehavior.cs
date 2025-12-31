@@ -14,6 +14,9 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] int damageIncreasePerLevel = 1;
     [SerializeField] int damageTakenFromEnemies = 1;
 
+    [SerializeField] int nextHPIncrease = 2;
+    [SerializeField] int nextEXPIncrease = 2;
+
     [SerializeField] Renderer[] skinRenderers;
     [SerializeField] float hitBlinkDuration = 0.08f;
     [SerializeField] Color hitColor = Color.red;
@@ -123,9 +126,9 @@ public class PlayerBehavior : MonoBehaviour
     void PlayerLevelUp()
     {
         playerLevel++;
-        playerHealth += 2;
+        playerHealth += nextHPIncrease;
         currentHealth = playerHealth;
-        expNeededToLevelUp += 4;
+        expNeededToLevelUp += nextEXPIncrease;
         UpdateHealthUI();
 
         var attack = GetComponent<PlayerAttack>();
