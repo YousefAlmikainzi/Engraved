@@ -55181,7 +55181,9 @@ MonoBehaviour:
   attackRange: {x: 0, y: 2, z: 1.75}
   attackRadius: 1.5
   attackDamage: 1
-  attackCoolDown: 0.5
+  attackCoolDown: 0.55
+  attackDuration: 0.507
+  hitDelay: 0.14
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
