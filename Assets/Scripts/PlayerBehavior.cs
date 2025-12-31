@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -13,9 +14,17 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] int damageIncreasePerLevel = 1;
     [SerializeField] int damageTakenFromEnemies = 1;
 
-    private int currentHealth;
-    private int currentExp;
-    private int playerLevel = 1;
+    [SerializeField] Renderer[] skinRenderers;
+    [SerializeField] float hitBlinkDuration = 0.08f;
+    [SerializeField] Color hitColor = Color.red;
+
+    int currentHealth;
+    int currentExp;
+    int playerLevel = 1;
+
+    MaterialPropertyBlock mpb;
+    Color[] originalColors;
+    Coroutine blinkCoroutine;
 
     void Start()
     {
@@ -26,6 +35,23 @@ public class PlayerBehavior : MonoBehaviour
         currentExp = 0;
         expSlider.maxValue = expNeededToLevelUp;
         expSlider.value = currentExp;
+
+        mpb = new MaterialPropertyBlock();
+        if (skinRenderers != null && skinRenderers.Length > 0)
+        {
+            originalColors = new Color[skinRenderers.Length];
+            for (int i = 0; i < skinRenderers.Length; i++)
+            {
+                var r = skinRenderers[i];
+                if (r != null && r.sharedMaterial != null && r.sharedMaterial.HasProperty("_Color"))
+                    originalColors[i] = r.sharedMaterial.GetColor("_Color");
+                else
+                    originalColors[i] = Color.white;
+                r.GetPropertyBlock(mpb);
+                mpb.SetColor("_Color", originalColors[i]);
+                r.SetPropertyBlock(mpb);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,10 +68,38 @@ public class PlayerBehavior : MonoBehaviour
         currentHealth = Mathf.Max(0, currentHealth);
         healthSlider.value = currentHealth;
 
-        if (currentHealth <= 0)
+        if (skinRenderers != null && skinRenderers.Length > 0)
         {
-            Die();
+            if (blinkCoroutine != null) StopCoroutine(blinkCoroutine);
+            blinkCoroutine = StartCoroutine(BlinkAll());
         }
+
+        if (currentHealth <= 0) Die();
+    }
+
+    IEnumerator BlinkAll()
+    {
+        for (int i = 0; i < skinRenderers.Length; i++)
+        {
+            var r = skinRenderers[i];
+            if (r == null) continue;
+            r.GetPropertyBlock(mpb);
+            mpb.SetColor("_Color", hitColor);
+            r.SetPropertyBlock(mpb);
+        }
+
+        yield return new WaitForSeconds(hitBlinkDuration);
+
+        for (int i = 0; i < skinRenderers.Length; i++)
+        {
+            var r = skinRenderers[i];
+            if (r == null) continue;
+            r.GetPropertyBlock(mpb);
+            mpb.SetColor("_Color", originalColors != null && i < originalColors.Length ? originalColors[i] : Color.white);
+            r.SetPropertyBlock(mpb);
+        }
+
+        blinkCoroutine = null;
     }
 
     void Die()

@@ -53689,6 +53689,22 @@ MonoBehaviour:
   expSlider: {fileID: 154894992433684849}
   damageIncreasePerLevel: 1
   damageTakenFromEnemies: 1
+  skinRenderers:
+  - {fileID: 7583301361967342749}
+  - {fileID: 4150354873107834637}
+  - {fileID: 3609262469907522449}
+  - {fileID: 3893387472276895577}
+  - {fileID: 7677995937063111894}
+  - {fileID: 4141511705716515953}
+  - {fileID: 8884969606932024335}
+  - {fileID: 2282801133818108260}
+  - {fileID: 7749854469628689814}
+  - {fileID: 6177043160091393987}
+  - {fileID: 7676588776732166444}
+  - {fileID: 4768357891287148386}
+  - {fileID: 257900585292213503}
+  hitBlinkDuration: 0.08
+  hitColor: {r: 0.4867924, g: 0, b: 0, a: 1}
 --- !u!1 &8933003962878032841
 GameObject:
   m_ObjectHideFlags: 0
