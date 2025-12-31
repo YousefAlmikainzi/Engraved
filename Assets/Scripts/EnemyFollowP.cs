@@ -15,6 +15,7 @@ public class EnemyFollowP : MonoBehaviour
     private Vector3 lungeDirection;
     private float nextLungeTime = 0f;
     private float fixedY;
+    const float EPS = 0.05f;
 
     void Start()
     {
@@ -23,7 +24,9 @@ public class EnemyFollowP : MonoBehaviour
 
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        Vector3 toPlayer = player.position - transform.position;
+        Vector3 toPlayerXZ = new Vector3(toPlayer.x, 0f, toPlayer.z);
+        float distanceToPlayer = toPlayerXZ.magnitude;
 
         if (lungeActive)
         {
@@ -41,26 +44,26 @@ public class EnemyFollowP : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange)
         {
-            Vector3 direction = (transform.position - player.position).normalized;
+            Vector3 dirToPlayer = toPlayerXZ.normalized;
 
-            if (distanceToPlayer <= stayAwayDistance && Time.time >= nextLungeTime)
+            if (distanceToPlayer <= stayAwayDistance + EPS && Time.time >= nextLungeTime)
             {
                 lungeActive = true;
                 lungeStartPos = transform.position;
-                lungeDirection = -direction;
-                transform.forward = lungeDirection;
+                lungeDirection = dirToPlayer;
+                transform.forward = new Vector3(lungeDirection.x, 0f, lungeDirection.z);
                 return;
             }
 
-            if (distanceToPlayer != stayAwayDistance)
+            if (Mathf.Abs(distanceToPlayer - stayAwayDistance) > EPS)
             {
-                Vector3 target = player.position + direction * stayAwayDistance;
+                Vector3 target = player.position - dirToPlayer * stayAwayDistance;
                 target.y = fixedY;
                 transform.position = Vector3.MoveTowards(transform.position, target, enemySpeed * Time.deltaTime);
 
-                Vector3 lookDirection = (player.position - transform.position).normalized;
-                lookDirection.y = 0;
-                transform.forward = lookDirection;
+                Vector3 lookDirection = new Vector3(dirToPlayer.x, 0, dirToPlayer.z);
+                if (lookDirection.sqrMagnitude > 0.0001f)
+                    transform.forward = lookDirection;
             }
         }
     }

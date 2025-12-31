@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= attackTimer)
         {
+            Debug.Log("Attacked");
             animator.SetTrigger("Punch");
 
             Vector3 attackPoint = transform.position + transform.TransformDirection(attackRange);

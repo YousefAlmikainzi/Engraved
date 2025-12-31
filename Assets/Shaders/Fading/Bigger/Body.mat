@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pants
-  m_Shader: {fileID: 4800000, guid: 85a913ea16cbd19488e78ab8d75340d4, type: 3}
+  m_Name: Body
+  m_Shader: {fileID: 4800000, guid: 472ffaa211865374881bcc17be7a1a50, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,12 +29,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AmbientIntensity: 0.25
-    - _BackLight: 0.5
-    - _SnapRange1: 55
-    - _SnapRange2: 60
-    - _TimeSpeed: 0.5
+    - _Alpha: 1
+    - _AmbientIntensity: 0.025
     m_Colors:
-    - _Color: {r: 0.13962269, g: 0.13962269, b: 0.13962269, a: 1}
+    - _Color: {r: 0.4188679, g: 0.24352665, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
