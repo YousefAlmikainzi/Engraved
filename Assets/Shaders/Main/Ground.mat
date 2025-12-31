@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AuraMat
-  m_Shader: {fileID: 4800000, guid: 2ae32f26ff5685347898af4d011c5a25, type: 3}
+  m_Name: Ground
+  m_Shader: {fileID: 4800000, guid: 85a913ea16cbd19488e78ab8d75340d4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,22 +24,17 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 43cbc137674705f4aab1a8ace7e991f8, type: 3}
+        m_Texture: {fileID: 2800000, guid: a3872a97d03b92a42ac926b914cc2d68, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amp: 0.6
-    - _Dither: 0.519
-    - _Opacity: 0.749
-    - _Pixelate: 32
-    - _Scale: 18.5
-    - _Speed: 5.51
-    - _Thickness: 8
+    - _AmbientIntensity: 0.25
+    - _BackLight: 0.5
+    - _SnapRange1: 160
+    - _SnapRange2: 180
+    - _TimeSpeed: 0.5
     m_Colors:
-    - _BottomColor: {r: 0.29999998, g: 0.6, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 0.7549019, b: 0, a: 1}
-    - _TopColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

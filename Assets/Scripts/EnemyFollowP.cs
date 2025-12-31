@@ -9,17 +9,22 @@ public class EnemyFollowP : MonoBehaviour
     [SerializeField] float lungeSpeed = 10f;
     [SerializeField] float lungeDistance = 5f;
     [SerializeField] float lungeCooldown = 2f;
+    [SerializeField] MeshRenderer enemyRenderer;
+    [SerializeField] Color lungeColor = Color.red;
 
     private bool lungeActive = false;
     private Vector3 lungeStartPos;
     private Vector3 lungeDirection;
     private float nextLungeTime = 0f;
     private float fixedY;
+    private Color originalColor;
     const float EPS = 0.05f;
 
     void Start()
     {
         fixedY = transform.position.y;
+        if (enemyRenderer != null)
+            originalColor = enemyRenderer.material.color;
     }
 
     void Update()
@@ -34,10 +39,15 @@ public class EnemyFollowP : MonoBehaviour
             newPos.y = fixedY;
             transform.position = newPos;
 
+            if (enemyRenderer != null)
+                enemyRenderer.material.color = lungeColor;
+
             if (Vector3.Distance(lungeStartPos, transform.position) >= lungeDistance)
             {
                 lungeActive = false;
                 nextLungeTime = Time.time + lungeCooldown;
+                if (enemyRenderer != null)
+                    enemyRenderer.material.color = originalColor;
             }
             return;
         }
